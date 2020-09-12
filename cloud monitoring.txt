@@ -1,0 +1,67 @@
+#LAB :Google Cloud Fundamentals: Getting Started with Deployment Manager and Cloud Monitoring
+
+## OBJECTIVES:
+In this lab, you will learn how to perform the following tasks:
+
+Create a Deployment Manager deployment.
+Update a Deployment Manager deployment.
+View the load on a VM instance using Cloud Monitoring.
+
+#STEPS:
+1.Confirm that needed APIs are enabled
+#Make a note of the name of your GCP project.
+
+gcloud projects list
+
+#Using the applicable project ID from the previous step, set the default project to the one in which you want to enable the API
+
+gcloud config set project YOUR_PROJECT_ID
+
+#Scroll down in the list of enabled APIs, and confirm that these APIs are enabled:
+
+gcloud services list --available
+
+#If one or more APIs is missing, click the Enable APIs and Services 
+
+gcloud services enable SERVICE_NAME
+
+2.Create agcloud projects list Deployment Manager deployment
+
+
+#place the zone that Qwiklabs assigned you to into an environment variable called MY_ZONE
+
+export MY_ZONE=us-central1-a
+
+#download an editable Deployment Manager template
+
+gsutil cp gs://cloud-training/gcpfcoreinfra/mydeploy.yaml mydeploy.yaml
+
+#replace the PROJECT_ID placeholder string with your Google Cloud Platform project ID 
+
+sed -i -e "s/PROJECT_ID/$DEVSHELL_PROJECT_ID/" mydeploy.yaml
+
+#View the mydeploy.yaml file
+
+cat mydeploy.yaml
+
+Build a deployment from the template
+
+gcloud deployment-manager deployments create my-first-depl --config mydeploy.yaml
+
+=Confirm that the deployment was successful
+
+
+3. Update a Deployment Manager deployment
+
+#Launch the nano text editor to edit the mydeploy.yaml file:
+
+nano mydeploy.yaml
+
+Find the line that sets the value of the startup script, value: "apt-get update",
+
+4. View the Load on a VM using Cloud Monitoring
+
+5.
+
+
+
